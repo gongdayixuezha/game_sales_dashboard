@@ -1,7 +1,7 @@
 # 语言配置文件：集中管理所有中英文文本，移除多余Emoji
 lang_dict = {
     # 全局通用文本
-    "app_title": {"zh": "全球电子游戏销售数据叙事", "en": "Global Video Game Sales Data Narrative"},
+    "app_title": {"zh": "全球电子游戏销售数据", "en": "Global Video Game Sales Data Narrative"},
     "sidebar_title": {"zh": "游戏销售分析", "en": "Game Sales Analysis"},
     "menu_option": {"zh": "选择模块", "en": "Select Module"},
     "global_filter": {"zh": "全局筛选", "en": "Global Filter"},
