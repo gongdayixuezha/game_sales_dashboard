@@ -1,47 +1,104 @@
 import streamlit as st
+from utils.lang import get_text
 
 def show_conclusions():
-    st.markdown("""
-    # 核心洞察与行动启示
-    ## 一、核心洞察
-    """)
-
-    # 洞察 1
-    st.markdown("### 1. 行业趋势：2000-2010 年为黄金期，后续趋稳")
-    st.info("""
-    - 2000-2010 年销售额占总规模的 68%，为行业爆发期（受益于 Wii、PS2 等主流平台普及）。
-    - 2010 年后销售额略有下滑，可能与移动游戏崛起、数据集未覆盖移动平台有关。
-    """)
-
-    # 洞察 2
-    st.markdown("### 2. 区域偏好：差异显著，精准定位是关键")
-    st.info("""
-    - 北美市场：动作类、体育类游戏最受欢迎（占比超 40%）。
-    - 欧洲市场：与北美偏好相似，但赛车类游戏占比更高。
-    - 日本市场：角色扮演类（RPG）占比领先（25%），对西方主流类型接受度较低。
-    """)
-
-    # 洞察 3
-    st.markdown("### 3. 市场竞争：任天堂领跑，头部效应明显")
-    st.info("""
-    - 任天堂（Nintendo）以超 1700 百万美元销售额稳居第一，占总市场的 18%。
-    - Top 5 发行商（任天堂、EA、Activision 等）占据近 50% 市场份额，行业集中度高。
-    - 平台方面：Wii、PS2、DS 是最成功的三款平台，合计销售额占比超 30%。
-    """)
-
-    # 行动启示
-    st.markdown("## 二、行动启示")
-    st.success("""
-    ### 对发行商：
-    1. 聚焦核心市场：北美为最大单一市场，可优先布局动作/体育类游戏；日本市场重点开发 RPG 类。
-    2. 平台选择：优先适配历史表现优异的平台（如 Switch 延续 Wii 生态），或聚焦新兴主机平台。
-    3. 合作头部 IP：与任天堂、EA 等头部发行商合作，借力其渠道和用户基础。
-
-    ### 对开发者：
-    1. 类型深耕：北美/欧洲市场可深耕动作/体育类，日本市场聚焦 RPG/策略类。
-    2. 怀旧趋势：2000-2010 年经典 IP 重启可能获得市场青睐。
-
-    ### 局限性说明：
-    - 数据集未覆盖移动游戏、PC 独立游戏等新兴领域，可能低估近年市场规模。
-    - 部分游戏年份缺失，可能影响趋势分析的准确性。
-    """)
+    st.markdown(f"<div class='section-title'>{get_text('core_insights_title')}</div>", unsafe_allow_html=True)
+    
+    # 洞察1（带图标）
+    st.markdown(f"""
+    <div class='card'>
+        <h4 style='color: #3498db; display: flex; align-items: center;'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                <polyline points='22 12 18 12 15 21 9 3 6 12 2 12'></polyline>
+            </svg>
+            {get_text('trend_insight_title')}
+        </h4>
+        <p>• {get_text('trend_insight_1')}</p>
+        <p>• {get_text('trend_insight_2')}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 洞察2
+    st.markdown(f"""
+    <div class='card'>
+        <h4 style='color: #e74c3c; display: flex; align-items: center;'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                <circle cx='12' cy='12' r='10'></circle>
+                <path d='M2 12h20'></path>
+                <path d='M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z'></path>
+            </svg>
+            {get_text('region_insight_title')}
+        </h4>
+        <p>• {get_text('region_insight_1')}</p>
+        <p>• {get_text('region_insight_2')}</p>
+        <p>• {get_text('region_insight_3')}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 洞察3
+    st.markdown(f"""
+    <div class='card'>
+        <h4 style='color: #2ecc71; display: flex; align-items: center;'>
+            <svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'>
+                <path d='M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'></path>
+                <circle cx='9' cy='7' r='4'></circle>
+                <path d='M22 21v-2a4 4 0 0 0-3-3.87'></path>
+                <path d='M16 3.13a4 4 0 0 1 0 7.75'></path>
+            </svg>
+            {get_text('competition_insight_title')}
+        </h4>
+        <p>• {get_text('competition_insight_1')}</p>
+        <p>• {get_text('competition_insight_2')}</p>
+        <p>• {get_text('competition_insight_3')}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 行动启示（分角色）
+    st.markdown(f"<div class='section-title'>{get_text('action_recommendations_title')}</div>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns(3)
+    
+    with col1:
+        st.markdown(f"""
+        <div class='card' style='border-top: 4px solid #3498db;'>
+            <h4 style='color: #3498db;'>{get_text('for_publishers')}</h4>
+            <ul>
+                <li>{get_text('publisher_recom_1')}</li>
+                <li>{get_text('publisher_recom_2')}</li>
+                <li>{get_text('publisher_recom_3')}</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown(f"""
+        <div class='card' style='border-top: 4px solid #e74c3c;'>
+            <h4 style='color: #e74c3c;'>{get_text('for_developers')}</h4>
+            <ul>
+                <li>{get_text('developer_recom_1')}</li>
+                <li>{get_text('developer_recom_2')}</li>
+                <li>{get_text('developer_recom_3')}</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown(f"""
+        <div class='card' style='border-top: 4px solid #2ecc71;'>
+            <h4 style='color: #2ecc71;'>{get_text('for_investors')}</h4>
+            <ul>
+                <li>{get_text('investor_recom_1')}</li>
+                <li>{get_text('investor_recom_2')}</li>
+                <li>{get_text('investor_recom_3')}</li>
+            </ul>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # 局限性说明（折叠面板）
+    with st.expander(get_text('limitations_improvements'), expanded=False):
+        st.markdown(f"""
+        <div class='card' style='background-color: #f8f9fa;'>
+            <p>• {get_text('limitation_1')}</p>
+            <p>• {get_text('limitation_2')}</p>
+            <p>• {get_text('limitation_3')}</p>
+        </div>
+        """, unsafe_allow_html=True)

@@ -1,30 +1,62 @@
 import streamlit as st
+from utils.lang import get_text
 
 def show_intro():
-    st.markdown("""
-    # 全球电子游戏销售数据叙事
-    ## 背景与目标
-    电子游戏行业已成为全球娱乐产业的支柱，2023 年全球市场规模超 2000 亿美元。本仪表盘基于 1980s-2010s 全球游戏销售数据集，探索行业发展趋势、区域偏好差异和市场竞争格局，为游戏发行商、开发者和投资者提供数据驱动的决策参考。
-
-    ## 数据集说明
-    - **来源**：Video Game Sales Dataset（开放数据集）
-    - **规模**：16,598 条游戏销售记录
-    - **核心字段**：游戏名称、平台、发行年份、类型、发行商、各地区销售额（北美、欧洲、日本、其他地区）、全球销售额
-    - **单位**：销售额以百万美元计
-
-    ## 分析框架
-    1. 全局概览：核心销售指标与整体趋势
-    2. 深度分析：时间趋势、区域偏好、发行商/平台排名
-    3. 洞察启示：市场机会与策略建议
-    """)
-
-    # 数据质量提示
-    st.markdown("### 数据质量说明")
+    st.markdown(f"<div class='section-title'>{get_text('background_goal_title')}</div>", unsafe_allow_html=True)
+    st.markdown(f"""
+    <div class='card'>
+        <p>{get_text('background_content')}</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown(f"<div class='section-title'>{get_text('dataset_description_title')}</div>", unsafe_allow_html=True)
+    st.markdown(f"""
+    <div class='card'>
+        <ul>
+            <li><strong>{get_text('dataset_source')}</strong></li>
+            <li><strong>{get_text('dataset_scale')}</strong></li>
+            <li><strong>{get_text('dataset_fields')}</strong></li>
+            <li><strong>{get_text('dataset_unit')}</strong></li>
+        </ul>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.markdown(f"<div class='section-title'>{get_text('analysis_framework_title')}</div>", unsafe_allow_html=True)
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.markdown(f"""
+        <div class='card' style='text-align: center;'>
+            <h3 style='color: #3498db;'>📈</h3>
+            <h4>{get_text('global_overview')}</h4>
+            <p>{get_text('global_overview_desc')}</p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col2:
+        st.markdown(f"""
+        <div class='card' style='text-align: center;'>
+            <h3 style='color: #e74c3c;'>🔍</h3>
+            <h4>{get_text('deep_analysis')}</h4>
+            <p>{get_text('deep_analysis_desc')}</p>
+        </div>
+        """, unsafe_allow_html=True)
+    with col3:
+        st.markdown(f"""
+        <div class='card' style='text-align: center;'>
+            <h3 style='color: #2ecc71;'>💡</h3>
+            <h4>{get_text('insights_recommendations')}</h4>
+            <p>{get_text('insights_recommendations_desc')}</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    # 数据质量提示（美化）
+    st.markdown(f"<div class='section-title'>{get_text('data_quality_note')}</div>", unsafe_allow_html=True)
     data_quality = st.session_state.get("data_quality", {})
-    st.info(f"""
-    - 原始记录数：{data_quality.get('Total_Records', 'N/A')}
-    - 清洗后记录数：{data_quality.get('Cleaned_Records', 'N/A')}
-    - 年份缺失比例：{data_quality.get('Missing_Year_Pct', 'N/A')}
-    - 重复记录数：{data_quality.get('Duplicate_Records', 'N/A')}
-    - 单款游戏最高销售额：{data_quality.get('Max_Global_Sales', 'N/A')}
-    """)
+    st.markdown(f"""
+    <div class='card' style='background-color: #fef9e7; border-left: 4px solid #f39c12;'>
+        <p>• {get_text('original_records')}：{data_quality.get('Total_Records', 'N/A')}</p>
+        <p>• {get_text('cleaned_records')}：{data_quality.get('Cleaned_Records', 'N/A')}</p>
+        <p>• {get_text('missing_year_pct')}：{data_quality.get('Missing_Year_Pct', 'N/A')}（可能影响部分趋势分析）</p>
+        <p>• {get_text('duplicate_records')}：{data_quality.get('Duplicate_Records', 'N/A')}（已移除）</p>
+        <p>• {get_text('max_sales_single')}：{data_quality.get('Max_Global_Sales', 'N/A')}（《Wii Sports》）</p>
+    </div>
+    """, unsafe_allow_html=True)
