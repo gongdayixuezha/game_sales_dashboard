@@ -1,0 +1,11 @@
+# 忽略Python缓存文件
+__pycache__/
+*.pyc
+# 忽略虚拟环境
+venv/
+# 忽略数据文件（如果不需要推送大文件）
+*.csv
+*.zip
+# 忽略Anaconda相关文件
+.conda/
+.env
