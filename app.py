@@ -80,6 +80,12 @@ st.markdown("""
             border-radius: 8px;
             overflow: hidden;
         }
+        /* 联系信息样式 */
+        .contact-info {
+            margin: 15px 0;
+            text-align: center;
+            line-height: 1.6;
+        }
     </style>
 """, unsafe_allow_html=True)
 
@@ -90,8 +96,24 @@ tables = make_tables(df_raw)  # make_tables 返回字典，而非列表/元组
 st.session_state["data_quality"] = tables["data_quality"]
 st.session_state["df_clean"] = tables["df_clean"]  # 通过键名获取清洗后的数据集（修复 KeyError: 0）
 
-# 侧边栏配置（包含语言切换、导航、全局筛选）
+# 侧边栏配置（包含logo、联系信息、语言切换、导航、全局筛选）
 with st.sidebar:
+    # 新增：添加logo和联系信息（放在最上方）
+    col_logo1, col_logo2 = st.columns(2)
+    with col_logo1:
+        st.image("assets/logo1.png", width=100)  # 替换为实际logo1路径（如"assets/logo1.png"）
+    with col_logo2:
+        st.image("assets/logo2.png", width=100)  # 替换为实际logo2路径（如"assets/logo2.png"）
+    
+    # 个人和教授信息
+    st.markdown("""
+    <div class="contact-info">
+        <p><strong>王瑞庆</strong><br>ruiqing.wang@efrei.net</p>
+        <p><strong>Mano Joseph Mathew</strong><br>mano.mathew@efrei.fr</p>
+    </div>
+    <hr style="margin: 10px 0;">
+    """, unsafe_allow_html=True)
+    
     # 语言切换按钮组（中文/English）
     st.markdown("<div class='lang-btn-group'>", unsafe_allow_html=True)
     col_zh, col_en = st.columns(2)
