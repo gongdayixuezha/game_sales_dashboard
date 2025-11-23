@@ -89,21 +89,21 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-# 加载数据（核心修复：正确获取 make_tables 返回的字典数据）
+# 加载数据
 df_raw = load_data()
 tables = make_tables(df_raw)  # make_tables 返回字典，而非列表/元组
 # 缓存关键数据到会话状态
 st.session_state["data_quality"] = tables["data_quality"]
-st.session_state["df_clean"] = tables["df_clean"]  # 通过键名获取清洗后的数据集（修复 KeyError: 0）
+st.session_state["df_clean"] = tables["df_clean"]  # 通过键名获取清洗后的数据集
 
 # 侧边栏配置（包含logo、联系信息、语言切换、导航、全局筛选）
 with st.sidebar:
-    # 新增：添加logo和联系信息（放在最上方）
+    # 新增logo和联系信息（放在最上方）
     col_logo1, col_logo2 = st.columns(2)
     with col_logo1:
-        st.image("assets/logo1.png", width=100)  # 替换为实际logo1路径（如"assets/logo1.png"）
+        st.image("assets/logo1.png", width=100)
     with col_logo2:
-        st.image("assets/logo2.png", width=100)  # 替换为实际logo2路径（如"assets/logo2.png"）
+        st.image("assets/logo2.png", width=100)
     
     # 个人和教授信息
     st.markdown("""

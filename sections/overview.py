@@ -7,7 +7,6 @@ def show_overview(tables):
     df_clean = st.session_state.get("df_clean")
     selected_decade = st.session_state.get("selected_decade", ["1990", "2000", "2010"])
     
-    # ---------------------- 核心修复1：数据校验与字段名兼容 ----------------------
     # 1. 确保df_clean存在且非空
     if df_clean is None or len(df_clean) == 0:
         st.warning("⚠️ 未获取到有效数据，请检查数据集是否正确加载")
@@ -57,7 +56,6 @@ def show_overview(tables):
         st.error(f"⚠️ 数据集缺少关键字段：{', '.join(missing_fields)}，请检查数据集格式或修改代码中的字段名映射")
         return
     
-    # ---------------------- 核心修复2：简化筛选逻辑（用Year直接筛选，不依赖Decade） ----------------------
     # 转换Year字段为整数，过滤无效值
     df_clean[year_field] = pd.to_numeric(df_clean[year_field], errors="coerce")  # 非数值转为NaN
     df_valid = df_clean.dropna(subset=[year_field, global_sales_field])  # 过滤年份和销售额为空的记录
@@ -81,7 +79,6 @@ def show_overview(tables):
         filtered_df = df_valid  # 若年代筛选无效，使用全量有效数据
     
     
-    # ---------------------- 核心修复3：重新计算指标（确保字段名正确） ----------------------
     # 核心指标（基于筛选后的有效数据）
     total_sales = filtered_df[global_sales_field].sum() if len(filtered_df) > 0 else 0
     total_games = len(filtered_df) if len(filtered_df) > 0 else 0
@@ -131,7 +128,6 @@ def show_overview(tables):
                 growth_delta = f"{growth_rate:.1f}%"
                 growth_color = "green" if growth_rate > 0 else "red"
     
-    # ---------------------- 页面渲染（保持原有样式，仅替换变量） ----------------------
     # 第一行：核心KPI（4列）
     st.markdown(f"<div class='section-title'>{get_text('core_kpi_title')}</div>", unsafe_allow_html=True)
     col1, col2, col3, col4 = st.columns(4)

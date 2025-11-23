@@ -15,7 +15,6 @@ def show_deep_dives(tables):
     selected_decade = st.session_state.get("selected_decade", ["1990", "2000", "2010"])
     unknown_text = get_text("Unknown")
     
-    # ---------------------- 核心修复：年代筛选逻辑简化 ----------------------
     # 筛选年代数据（统一基于df_clean，避免多重过滤）
     if unknown_text not in selected_decade and "Unknown" not in selected_decade:
         filtered_df_clean = df_clean[df_clean["Decade"].isin(selected_decade)]
@@ -27,7 +26,7 @@ def show_deep_dives(tables):
     filtered_df_clean = filtered_df_clean[filtered_df_clean["Global_Sales"] > 0]
     filtered_df_clean["Year"] = filtered_df_clean["Year"].astype(int)
     
-    # ---------------------- 1. 时间趋势分析（修复无数据问题）----------------------
+    # ---------------------- 1. 时间趋势分析----------------------
     st.markdown(f"<div class='section-title'>{get_text('time_trend_title')}</div>", unsafe_allow_html=True)
     
     with st.container():
@@ -81,7 +80,6 @@ def show_deep_dives(tables):
                     fig_trend.data[1].visible = False
                 st.plotly_chart(fig_trend, width='stretch')
         
-        # 新增：堆叠面积图（各地区销售额趋势）
         st.markdown(f"<div class='section-title'>{get_text('regional_sales_trend')}</div>", unsafe_allow_html=True)
         if len(filtered_df_clean) > 0:
             fig_area = stacked_area_chart(filtered_df_clean)

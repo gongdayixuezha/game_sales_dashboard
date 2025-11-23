@@ -186,7 +186,6 @@ def bubble_chart_genre_year(df):
     )
     return fig
 
-# ---------------------- 原有函数（仅修复 line_chart_timeseries）----------------------
 def line_chart_timeseries(data):
     """时间序列趋势图：年度销售额与游戏数量"""
     fig = go.Figure()
@@ -196,7 +195,6 @@ def line_chart_timeseries(data):
         name=f"{get_text('global_sales')}（百万）",
         yaxis="y1",
         line=dict(color="#3498db", width=2),
-        # 修复：Plotly hovertemplate 语法，用 {{x}} 转义大括号，避免 Python 变量冲突
         hovertemplate=f"{get_text('year')}：%{{x}}<br>{get_text('sales')}：%{{y:.2f}}M"
     ))
     # 游戏数量柱状图（右轴）
@@ -205,7 +203,6 @@ def line_chart_timeseries(data):
         name=get_text("game_count"),
         yaxis="y2",
         marker=dict(color="#e74c3c", opacity=0.6),
-        # 修复：同上，用 {{x}}/{{y}} 转义
         hovertemplate=f"{get_text('year')}：%{{x}}<br>{get_text('game_count')}：%{{y}}"
     ))
     fig.update_layout(
