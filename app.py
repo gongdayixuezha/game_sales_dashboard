@@ -110,6 +110,7 @@ with st.sidebar:
     <div class="contact-info">
         <p><strong>王瑞庆</strong><br>ruiqing.wang@efrei.net</p>
         <p><strong>Mano Joseph Mathew</strong><br>mano.mathew@efrei.fr</p>
+        <p>https://github.com/gongdayixuezha/game_sales_dashboard</p>
     </div>
     <hr style="margin: 10px 0;">
     """, unsafe_allow_html=True)

@@ -6,7 +6,7 @@ def load_data():
     """加载并返回原始数据集（优先在线加载，备用本地文件）"""
     try:
         # 在线数据集链接（确保可访问）
-        url = "https://raw.githubusercontent.com/justmarkham/pandas-videos/master/data/vgsales.csv"
+        url = "https://www.kaggle.com/datasets/anandshaw2001/video-game-sales/data"
         df = pd.read_csv(url)
     except:
         # 本地备用文件
